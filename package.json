@@ -1,0 +1,19 @@
+{
+  "name": "iostate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sergeiterehov/iostate.git"
+  },
+  "author": "Sergei Terehov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sergeiterehov/iostate/issues"
+  },
+  "homepage": "https://github.com/sergeiterehov/iostate#readme"
+}
