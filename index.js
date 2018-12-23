@@ -1,38 +1,20 @@
 // @ts-check
 
 const { IN, OUT } = require('./iostate');
+const { ALU } = require('./ALU');
 
-function Generator(delay) {
-    setInterval(() => this.clk(! this.clk()), delay);
+const alu = new ALU();
 
-    this.clk = OUT(false);
-}
+const aluDebugger = () => {
+    console.log(`ALU. result=${alu.result()}; zero=${alu.zero()}`);
+};
 
-function Divider(basis) {
-    this.clk = IN(() => {
-        if (! this.clk()) {
-            return;
-        }
+alu.result.listen(aluDebugger);
+alu.zero.listen(aluDebugger);
 
-        counter += 1;
+alu.a(0b101);
+alu.b(0b011);
 
-        if (counter === basis) {
-            counter = 0;
-            result += 1;
-        }
-
-        this.result(result);
-    });
-    this.result = OUT(0);
-
-    let counter = 0;
-    let result = 0;
-}
-
-const generator = new Generator(200);
-const divider = new Divider(5);
-
-divider.clk(generator.clk);
-
-divider.result.listen((value) => console.log('Divider result:', value));
-generator.clk.listen((value) => console.log('Generator clk:', value));
+alu.alu_control(0);
+alu.alu_control(1);
+alu.alu_control(0b101);
